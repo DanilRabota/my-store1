@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Магазин Данила - Товары</title>
+  <style>
+    /* Общие стили */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('Картинка.png'); /* Путь к изображению */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 0;
+      background-color: rgba(0, 0, 0, 0.7); /* Прозрачный фон для текста */
+    }
+
+    .menu {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .menu a {
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+      margin: 10px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+    }
+
+    .menu a:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer {
+      text-align: center;
+      color: white;
+      margin-top: 50px;
+      padding: 10px 0;
+      background-color: rgba(0, 0, 0, 0.7); /* Прозрачный фон для текста */
+    }
+
+    /* Стили для товаров */
+    .product {
+      display: inline-block;
+      width: 30%;
+      margin: 10px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .product h3 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .product p {
+      font-size: 16px;
+    }
+
+    .product button {
+      padding: 10px 20px;
+      background-color: #ff5733;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .product button:hover {
+      background-color: #c44626;
+    }
+
+    /* Корзина */
+    .cart {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .cart h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .cart-items {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .cart-item {
+      margin: 10px 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .cart-item p {
+      margin: 0;
+    }
+
+    .checkout-button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .checkout-button:hover {
+      background-color: #218838;
+    }
+
+    /* Форма оплаты */
+    .payment-form {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      display: none;
+    }
+
+    .payment-form input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .payment-form button {
+      padding: 10px 20px;
+      background-color: #ff5733;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .payment-form button:hover {
+      background-color: #c44626;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Товары магазина Данила</h1>
+  </header>
+  
+  <div class="menu">
+    <a href="index.html">Главная</a> <!-- Ссылка на главную страницу -->
+  </div>
+
+  <div id="products" class="content">
+    <h2>Наши товары</h2>
+
+    <!-- Товары -->
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/ak47_the_empress.png" alt="AK-47 | The Empress">
+      <h3>AK-47 | The Empress</h3>
+      <p>Цена: 120$</p>
+      <p>Красочный скин в стиле императрицы для АК-47. Идеально подходит для королей стрельбы.</p>
+      <button onclick="addToCart('AK-47 | The Empress', 120)">Добавить в корзину</button>
+    </div>
+
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/awp_gungnir.png" alt="AWP | Gungnir">
+      <h3>AWP | Gungnir</h3>
+      <p>Цена: 450$</p>
+      <p>Один из самых редких скинов для AWP. Стильный и уникальный, как само оружие.</p>
+      <button onclick="addToCart('AWP | Gungnir', 450)">Добавить в корзину</button>
+    </div>
+
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/karambit_case_hardened.png" alt="Karambit | Case Hardened">
+      <h3>Karambit | Case Hardened</h3>
+      <p>Цена: 300$</p>
+      <p>Красивый нож с уникальной раскраской. Особый выбор для тех, кто ценит стиль и эффект.</p>
+      <button onclick="addToCart('Karambit | Case Hardened', 300)">Добавить в корзину</button>
+    </div>
+
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/m4a1s_printstream.png" alt="M4A1-S | Printstream">
+      <h3>M4A1-S | Printstream</h3>
+      <p>Цена: 250$</p>
+      <p>Легендарный скин для M4A1-S. Отлично подходит для дальних боёв и стелс-стратегий.</p>
+      <button onclick="addToCart('M4A1-S | Printstream', 250)">Добавить в корзину</button>
+    </div>
+
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/desert_eagle_blaze.png" alt="Desert Eagle | Blaze">
+      <h3>Desert Eagle | Blaze</h3>
+      <p>Цена: 150$</p>
+      <p>Этот скин на Desert Eagle с огненным дизайном сделает ваши выстрелы ещё более эффектными!</p>
+      <button onclick="addToCart('Desert Eagle | Blaze', 150)">Добавить в корзину</button>
+    </div>
+
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/m9_bayonet_doppler.png" alt="M9 Bayonet | Doppler">
+      <h3>M9 Bayonet | Doppler</h3>
+      <p>Цена: 500$</p>
+      <p>Эта уникальная версия ножа M9 Bayonet с красивым переходом цветов — мечта каждого коллекционера.</p>
+      <button onclick="addToCart('M9 Bayonet | Doppler', 500)">Добавить в корзину</button>
+    </div>
+
+    <div class="product">
+      <img src="https://cdn.dota2skins.com/csgo/skins/awp_dragon_lore.png" alt="AWP | Dragon Lore">
+      <h3>AWP | Dragon Lore</h3>
+      <p>Цена: 2000$</p>
+      <p>Легендарный скин для AWP, который стал символом CS:GO. Редкость и ценность этого скина говорят сами за себя.</p>
+      <button onclick="addToCart('AWP | Dragon Lore', 2000)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <!-- Корзина -->
+  <div class="cart">
+    <h2>Ваша корзина</h2>
+    <ul id="cart-items" class="cart-items"></ul>
+    <button class="checkout-button" onclick="showPaymentForm()">Оформить покупку</button>
+  </div>
+
+  <!-- Форма оплаты -->
+  <div class="payment-form" id="payment-form">
+    <h2>Форма оплаты</h2>
+    <form id="paymentForm">
+      <input type="text" id="cardholder" placeholder="Имя владельца карты" required>
+      <input type="text" id="cardnumber" placeholder="Номер карты" required>
+      <input type="text" id="expiry" placeholder="Дата истечения (MM/YY)" required>
+      <input type="text" id="cvv" placeholder="CVV" required>
+      <button type="submit">Оплатить</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Магазин Данила</p>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    // Функция добавления товаров в корзину
+    function addToCart(productName, productPrice) {
+      cart.push({ name: productName, price: productPrice });
+      updateCart();
+    }
+
+    // Обновление отображения корзины
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+        li.innerHTML = `<p>${item.name} - ${item.price}$</p>`;
+        cartItems.appendChild(li);
+      });
+    }
+
+    // Показать форму для ввода данных карты
+    function showPaymentForm() {
+      if (cart.length === 0) {
+        alert("Ваша корзина пуста. Добавьте товары в корзину.");
+        return;
+      }
+      document.getElementById('payment-form').style.display = 'block';
+    }
+
+    // Обработка отправки формы
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Оплата прошла успешно! Спасибо за покупку.');
+      cart = [];  // Очистить корзину после оформления
+      updateCart();
+      document.getElementById('payment-form').style.display = 'none'; // Скрыть форму
+    });
+  </script>
+</body>
+</html>
+
